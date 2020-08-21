@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteEditDlg" widgetVar="ClienteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditClienteTitle}">
+            <h:form id="ClienteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditClienteLabel_clientePK_nombre}" for="clientePK_nombre" />
+                        <p:inputText id="clientePK_nombre" value="#{clienteController.selected.clientePK.nombre}" title="#{bundle.EditClienteTitle_clientePK_nombre}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_clientePK_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditClienteLabel_clientePK_cedula}" for="clientePK_cedula" />
+                        <p:inputText id="clientePK_cedula" value="#{clienteController.selected.clientePK.cedula}" title="#{bundle.EditClienteTitle_clientePK_cedula}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_clientePK_cedula}"/>
+                        <p:outputLabel value="#{bundle.EditClienteLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{clienteController.selected.apellido}" title="#{bundle.EditClienteTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.EditClienteLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{clienteController.selected.direccion}" title="#{bundle.EditClienteTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditClienteLabel_edad}" for="edad" />
+                        <p:inputText id="edad" value="#{clienteController.selected.edad}" title="#{bundle.EditClienteTitle_edad}" />
+                        <p:outputLabel value="#{bundle.EditClienteLabel_provincia}" for="provincia" />
+                        <p:inputText id="provincia" value="#{clienteController.selected.provincia}" title="#{bundle.EditClienteTitle_provincia}" />
+                        <p:outputLabel value="#{bundle.EditClienteLabel_autoCompra}" for="autoCompra" />
+                        <p:inputText id="autoCompra" value="#{clienteController.selected.autoCompra}" title="#{bundle.EditClienteTitle_autoCompra}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.update}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
